@@ -1,0 +1,190 @@
+# productos--------------------------------------------------
+###
+POST http://localhost:3000/api/prod HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Uva",
+    "descripcion": "fruta fresca",
+    "precio": 10800,
+    "stock": 20,
+    "clasificacion": "6623fe404eb44003baa7da7a"
+}
+
+# crear pructo nuevos desde el server
+###
+POST http://localhost:3000/api/prods HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Fresas",
+    "descripcion": "fruta fresca",
+    "precio": 1800,
+    "stock": 50,
+    "clasificacion": "6623fe404eb44003baa7da7a"
+}
+
+###
+GET http://localhost:3000/api/prod HTTP/1.1
+
+###
+GET http://localhost:3000/api/prod/66234ac1ca88d300b5397306 HTTP/1.1
+
+###
+PUT http://localhost:3000/api/prod/662353782d29a0ef1d98ce4d HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Manzan Royal",
+    "descripcion": "fruta fresca",
+    "precio": 1500,
+    "stock": 20,
+    "clasificacion": "6623fe404eb44003baa7da7a"
+}
+
+###
+DELETE http://localhost:3000/api/prod/66234ad6ca88d300b5397309 HTTP/1.1
+
+###
+# inventario
+GET http://localhost:3000/api/inventario HTTP/1.1
+
+
+# categorias----------------------------------------------------------
+###
+GET http://localhost:3000/cat/catg HTTP/1.1
+
+###
+POST http://localhost:3000/cat/catg HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "datos para eliminar",
+    "descripcion": "datos para eliminar desde evento eliminar"
+}
+
+###
+GET http://localhost:3000/cat/catg/662400cd886a836a12323614 HTTP/1.1
+
+###
+PUT http://localhost:3000/cat/catg/662400cd886a836a12323614 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Lacteos",
+    "descripcion": "lacteos"
+}
+
+###
+DELETE http://localhost:3000/cat/catg/662403b07751cb4b9ac5a129 HTTP/1.1
+
+###
+get http://localhost:3000/cat/listcatg/6623fe404eb44003baa7da7a HTTP/1.1
+
+
+
+# Metodos de pago----------------------------------------------------------
+###
+POST http://localhost:3000/met/metpag HTTP/1.1
+Content-Type: application/json
+
+{
+    "nomMetodo": "Efectivo",
+    "descripcion": "Solo Se recibe dinero en efectivo!"
+}
+
+###
+POST http://localhost:3000/met/metpag HTTP/1.1
+Content-Type: application/json
+
+{
+    "nomMetodo": "Datafono",
+    "descripcion": "Se reciben todas las tarjetas!!"
+}
+
+###
+POST http://localhost:3000/met/metpag HTTP/1.1
+Content-Type: application/json
+
+{
+    "nomMetodo": "metodo de pago para eliminar",
+    "descripcion": "Metodo de pago para eliminar!!"
+}
+
+###
+GET http://localhost:3000/met/metpag HTTP/1.1
+
+
+###
+GET http://localhost:3000/met/metpag/66243719c123a00d9d6aef8b HTTP/1.1
+
+###
+PUT http://localhost:3000/met/metpag/66243867ec08351de83e5f07 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nomMetodo": "Datafono",
+    "descripcion": "Todo tipo de Tarjetas(Visa, Mastercard)!"
+}
+
+###
+DELETE http://localhost:3000/met/metpag/66244051d05b2ad77d1d30d1 HTTP/1.1
+
+###
+get http://localhost:3000/met/listmet/66244042d05b2ad77d1d30cf HTTP/1.1
+
+
+# Ventas-------------------------------------------------------------
+###
+POST http://localhost:3000/vent/venta HTTP/1.1
+Content-Type: application/json
+
+{
+    "producto": "6623ffb19aded04a6397b5af",
+    "cantidad": 2,
+    "metodoPago": "662440e1d05b2ad77d1d30d4"
+}
+
+###
+POST http://localhost:3000/vent/venta HTTP/1.1
+Content-Type: application/json
+
+{
+    "producto": "66241c83dc0c6cc7eef4bd5d",
+    "cantidad": 10,
+    "metodoPago": "66244042d05b2ad77d1d30cf"
+}
+
+###
+# validar las cambio de stock al momento de vender #20
+POST http://localhost:3000/vent/venta HTTP/1.1
+Content-Type: application/json
+
+{
+    "producto": "662353782d29a0ef1d98ce4d",
+    "cantidad": 2,
+    "metodoPago": "66244042d05b2ad77d1d30cf"
+}
+
+###
+GET http://localhost:3000/vent/venta HTTP/1.1
+
+
+###
+GET http://localhost:3000/vent/venta/6624472373d62d9b7a7c1df2 HTTP/1.1
+
+###
+PUT http://localhost:3000/vent/venta/66244cab727d4973c5b18766 HTTP/1.1
+Content-Type: application/json
+
+{
+    "producto": "6623ffb19aded04a6397b5af",
+    "cantidad": 190,
+    "metodoPago": "66244042d05b2ad77d1d30cf"
+}
+
+###
+DELETE http://localhost:3000/vent/venta/66244d07727d4973c5b1876c HTTP/1.1
+
+###
+get http://localhost:3000/cat/listcatg/6623fe404eb44003baa7da7a HTTP/1.1
