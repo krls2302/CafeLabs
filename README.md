@@ -30,6 +30,7 @@ lugar.
 
 
 **2**. Accede al directorio del proyecto: Abre una terminal o línea de comandos y navega al directorio donde has descargado el proyecto de Node.js.
+
 **3**. Instala las dependencias: Ejecuta el siguiente comando para instalar todas las dependencias listadas en el archivo package.json:
 
 _**npm install**_
