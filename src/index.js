@@ -5,6 +5,8 @@ const producRouter = require("./routes/productos");
 const catgRouter = require("./routes/categorias");
 const metPagRouter = require("./routes/metodo_pago");
 const ventaRouter = require("./routes/ventas");
+const swaggerUi = require('swagger-ui-express');
+const specs = require('./swaggerConfig');
 
 
 const app = express();
@@ -17,6 +19,8 @@ app.use("/api", producRouter);
 app.use("/cat", catgRouter);
 app.use("/met", metPagRouter);
 app.use("/vent", ventaRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
 
 // Base de datos
 mongoose

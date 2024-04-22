@@ -7,8 +7,38 @@ const { parse } = require("dotenv");
 
 const router = express.Router();
 
-// post para crear nueva venta!!!
 // Realizar una nueva venta y modificar el stock
+/**
+ * @swagger
+ * /vent/venta:
+ *   post:
+ *     tags:
+ *       - Ventas
+ *     summary: Crea un nueva venta
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               producto:
+ *                 type: string
+ *                 description: ID del producto
+ *               cantidad:
+ *                 type: number
+ *                 description: Cantidad de venta
+ *               metodoPago:
+ *                 type: string
+ *                 description: ID del metodo de pago
+ *     responses:
+ *       '201':
+ *         description: Venta Realizada exitosamente
+ *       '400':
+ *         description: Error en la solicitud. Verifica los datos enviados.
+ *       '500':
+ *         description: Error interno del servidor.
+ */
 router.post("/venta", async (req, res) => {
     try {
         // Realiza la consulta de clima actual antes de realizar la venta
@@ -47,6 +77,19 @@ async function consultarClima(ciudad, apiKey) {
 }
 
 // Obtener todos las ventas!!
+/**
+ * @swagger
+ * /vent/venta:
+ *   get:
+ *     tags:
+ *       - Ventas
+ *     summary: Obtiene todos las ventas almacenadas
+ *     responses:
+ *       '200':
+ *         description: Respuesta exitosa!!!
+ *       '500':
+ *         description: Error interno del servidor!!!
+ */
 router.get("/venta", (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = 5;
@@ -72,16 +115,45 @@ router.get("/venta", (req, res) => {
         });
 });
 
-// Obtener metodos de pago por id!!
-router.get("/venta/:id", (req, res) => {
-    const { id } = req.params;
-    ventaSchema
-        .findById(id)
-        .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
-});
-
 // actualizar metodo de pago por id!!
+/**
+ * @swagger
+ * /vent/venta/{id}:
+ *   put:
+ *     summary: Actualiza una producto por su ID
+ *     tags:
+ *       - Ventas
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del producto a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               producto:
+ *                 type: string
+ *                 description: ID del producto
+ *               cantidad:
+ *                 type: number
+ *                 description: Cantidad de venta
+ *               metodoPago:
+ *                 type: string
+ *                 description: ID del metodo de pago
+ *     responses:
+ *       '200':
+ *         description: Categoría actualizada exitosamente
+ *       '404':
+ *         description: Categoría no encontrada
+ *       '500':
+ *         description: Error interno del servidor
+ */
 router.put("/venta/:id", (req, res) => {
     const { id } = req.params;
     const { producto, cantidad, metodoPago } = req.body;
@@ -92,6 +164,28 @@ router.put("/venta/:id", (req, res) => {
 });
 
 // Eliminar metodo de pago por id!!
+/**
+ * @swagger
+ * /vent/venta/{id}:
+ *   delete:
+ *     summary: Elimina un venta por su ID
+ *     tags:
+ *       - Ventas
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID de la venta a eliminar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Venta eliminada exitosamente
+ *       '404':
+ *         description: Venta no encontrada
+ *       '500':
+ *         description: Error interno del servidor
+ */
 router.delete("/venta/:id", (req, res) => {
     const { id } = req.params;
     ventaSchema
